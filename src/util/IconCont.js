@@ -12,7 +12,7 @@ export default function IconCont({children}){
 
 const styles = StyleSheet.create({
     root : {
-        borderRadius : '40%',
+        // borderRadius : '40%',
         borderWidth : 1,
         alignItems : 'center',
         justifyContent : 'center',

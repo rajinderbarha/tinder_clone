@@ -9,42 +9,28 @@ import LikeScreen from "./src/screens/LikeScreen";
 import ChatScreen from "./src/screens/ChatScreen";
 import UserScreen from "./src/screens/UserScreen";
 import TinderLogo from "./src/util/tinderLogo";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, Fontisto, FontAwesome  } from "@expo/vector-icons";
 import Colors from "./constants/Colors";
 import HeaderRight from "./src/components/HeaderRight";
 import { createStackNavigator } from '@react-navigation/stack';
 import NotificationScreen from './src/screens/NotificationScreen';
 import DiscoverySettingsScreen from './src/screens/DiscoverySettingsScreen';
-import IconCont from './src/util/IconCont';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function HomeStack(){
-  return(
-    <Stack.Navigator >
-      <Stack.Screen name='Home' component={HomeScreen} options={{
-      headerLeft: () => <TinderLogo />,
-      headerTitle: "",
-      headerRight: () => <HeaderRight />,
-      }}/>
-      <Stack.Screen name='Notifications' component={NotificationScreen} />
-      <Stack.Screen name='DiscoverySettings' component={DiscoverySettingsScreen} options={{presentation : 'modal'}}/>
-    </Stack.Navigator>
-  )
-}
 
 
-export default function App() {
+
+ function BottomTabs () {
  
 
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator
       
         screenOptions={{
-          headerLeft: () => <TinderLogo />,
-          headerTitle: "",
+          headerShown : false, 
           
           tabBarActiveTintColor : Colors.primary,
           tabBarInactiveTintColor : Colors.text,
@@ -55,17 +41,14 @@ export default function App() {
         }}
       >
         <Tab.Screen
-          name="HomeStack"
-          component={HomeStack}
+          name="Home"
+          component={HomeScreen}
           options={{
             title: "",
             tabBarIcon: ({color, size}) => (
-              <IconCont>
-              <Image
-                source={require("./assets/tinder/tinder.png")}
-                style={[{ width: 24, height: 24}, {tintColor : color}]} 
-              />
-              </IconCont>
+              
+              <Fontisto name='tinder' size={28} color={color} />
+              
             ),headerShown : false
           }}
         />
@@ -91,7 +74,7 @@ export default function App() {
             title: "",
             tabBarIcon: ({color, size}) => (
               <MaterialCommunityIcons
-                name="shuriken"
+                name="star-four-points"
                 size={28}
                 color={color}
                 
@@ -120,8 +103,8 @@ export default function App() {
           options={{
             title: "",
             tabBarIcon: ({color, size}) => (
-              <Ionicons
-                name="person"
+              <FontAwesome
+                name="user"
                 size={28}
                 color={color}
                 
@@ -131,6 +114,25 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+   
   );
+}
+
+
+export default function App(){
+  return(<>
+  <StatusBar backgroundColor='black' />
+    <NavigationContainer>
+    <Stack.Navigator >
+      <Stack.Screen name='BottomTabs' component={BottomTabs} options={{
+      headerLeft: () => <TinderLogo />,
+      headerTitle: "",
+      headerRight: () => <HeaderRight />,
+      }}/>
+      <Stack.Screen name='Notifications' component={NotificationScreen} />
+      <Stack.Screen name='DiscoverySettings' component={DiscoverySettingsScreen} options={{presentation : 'modal'}}/>
+    </Stack.Navigator>
+    </NavigationContainer>
+    </>
+  )
 }
