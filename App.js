@@ -15,6 +15,7 @@ import HeaderRight from "./src/components/HeaderRight";
 import { createStackNavigator } from '@react-navigation/stack';
 import NotificationScreen from './src/screens/NotificationScreen';
 import DiscoverySettingsScreen from './src/screens/DiscoverySettingsScreen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ const Stack = createStackNavigator();
       <Tab.Navigator
       
         screenOptions={{
+          
           headerShown : false, 
           
           tabBarActiveTintColor : Colors.primary,
@@ -121,6 +123,7 @@ const Stack = createStackNavigator();
 
 export default function App(){
   return(<>
+  <GestureHandlerRootView>
   <StatusBar backgroundColor='black' />
     <NavigationContainer>
     <Stack.Navigator >
@@ -128,11 +131,13 @@ export default function App(){
       headerLeft: () => <TinderLogo />,
       headerTitle: "",
       headerRight: () => <HeaderRight />,
+      
       }}/>
       <Stack.Screen name='Notifications' component={NotificationScreen} />
       <Stack.Screen name='DiscoverySettings' component={DiscoverySettingsScreen} options={{presentation : 'modal'}}/>
     </Stack.Navigator>
     </NavigationContainer>
+    </GestureHandlerRootView>
     </>
   )
 }

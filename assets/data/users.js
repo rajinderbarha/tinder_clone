@@ -1,17 +1,17 @@
 export default [
   {
     id: '1',
-    name: 'Vadim Savin',
-    image:
-      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim1.JPG',
-    bio: 'I will be the semicolons to your code',
-  },
-  {
-    id: '2',
     name: 'Elon Musk',
     image:
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png',
     bio: 'A dude with a rocket is looking for a gal with fuel',
+  },
+  {
+    id: '2',
+    name: 'Vadim Savin',
+    image:
+      'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim1.JPG',
+    bio: 'I will be the semicolons to your code',
   },
   {
     id: '3',
@@ -34,4 +34,5 @@ export default [
       'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim1.JPG',
     bio: 'Hola',
   },
+  
 ];
