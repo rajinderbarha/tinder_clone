@@ -1,6 +1,7 @@
 import {
   Button,
   Dimensions,
+  Image,
   Pressable,
   ScrollView,
   Text,
@@ -20,6 +21,7 @@ import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
 import HomeBotomIcons from "../util/homeBottomIcons";
 
+
 const { height, width } = Dimensions.get("window");
 const SWIPE_THRESHOLD = 120;
 
@@ -38,8 +40,8 @@ export default function HomeScreen() {
   // )
 
   useEffect(() => {
-    if(!data.length){
-      setData(users)
+    if (!data.length) {
+      setData(users);
     }
   }, [data]);
 
@@ -54,46 +56,58 @@ export default function HomeScreen() {
     ],
   }));
 
-
-
-  function removeFirst(){
-    setData((prevData) => prevData.slice(1))
+  function removeFirst() {
+    setData((prevData) => {
+      console.log("removeFirst called");
+      return prevData.slice(1);
+    });
   }
 
   return (
-    // {/* <GestureDetector gesture={pan} > */}
-    <>
+   
+    <View style = {styles.root}>
       <Animated.View style={[styles.image, animatedStyle]}>
         {data
           .map((users, index) => {
             let isFirst = index === 0;
 
-            return <ImageCard user={users} key={users.id} isFirst={isFirst} />;
+            return (
+             
+              
+              <ImageCard
+                user={users}
+                key={users.id}
+                isFirst={isFirst}
+                removeFirst={removeFirst}
+              />
+              
+            );
           })
           .reverse()}
       </Animated.View>
       <View style={styles.buttons}>
         <HomeBotomIcons nope={removeFirst} />
       </View>
-    </>
-    //  {/* </GestureDetector> */}
+    </View>
+   
   );
 }
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    backgroundColor : 'white'
   },
-  buttons: { width: "100%", 
+  buttons: {
+    width: "100%",
     height: "10%",
-    flexDirection : 'row',
-    alignItems : 'center',
-    justifyContent : 'space-around',
-    padding : 4,
-    backgroundColor : 'transparent',
-    position : 'absolute',
-    bottom : 15,
-    paddingHorizontal : 10,
-    
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    padding: 4,
+    backgroundColor: "transparent",
+    position: "absolute",
+    bottom: 15,
+    paddingHorizontal: 10,
   },
 
   image: {
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     alignSelf: "center",
-    marginTop : 6
+    marginTop: 6,
   },
   txt: {
     color: "black",
@@ -117,4 +131,5 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignSelf: "center",
   },
+ 
 });
